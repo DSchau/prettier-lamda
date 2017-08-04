@@ -6,27 +6,28 @@ const containsCodeChild = $block => {
 };
 
 const getCode = $block => {
-  let content;  
   if (containsCodeChild($block)) {
     return $('block').find('code').first().text();
-  } else {
-    content = $block.text();    
   }
-  return content;
-}
+  return $block.text();
+};
 
 export const parse = (html, opts = {}) => {
   const $ = cheerio.load(html);
 
-  let blocks = [];  
+  let blocks = [];
   $('pre').each((index, el) => {
     const $el = $(el);
-    const content = getCode($el);
-    let prettified = content;
-    try {
-      blocks.push(prettier.format(prettified, opts));  
-    } catch (e) {
-      blocks.push(prettified);  
+    if ($el.attr('class').match(/lang(uage)?/)) {
+      blocks.push(null); // don't replace these, obv.
+    } else {
+      const content = getCode($el);
+      let prettified = content;
+      try {
+        blocks.push(prettier.format(prettified, opts));
+      } catch (e) {
+        blocks.push(prettified);
+      }
     }
   });
 
