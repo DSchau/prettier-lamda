@@ -10,5 +10,5 @@ functions:
     events:
       - http:
           path: prettier
-          method: get
+          method: post
           cors: true

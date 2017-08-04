@@ -1,18 +1,13 @@
-import { getHtml } from './get-html';
-import { parse } from './parse';
+import prettier from 'prettier';
 
 export const prettify = async (event, context, callback) => {
-  const { queryStringParameters: params = {} } = event;
+  const { body, queryStringParameters: opts = {} } = event;
 
-  const { url, ...opts } = params;
-
-  if (!url) {
-    callback(new Error('A url query parameter is required'));
+  if (!body) {
+    callback(new Error('A post body is required'));
   }
 
-  const html = await getHtml(url);
-
-  const blocks = parse(html, opts);
+  const prettified = prettier.format(body, opts);
 
   const response = {
     statusCode: 200,
@@ -20,7 +15,7 @@ export const prettify = async (event, context, callback) => {
       'Access-Control-Allow-Origin': '*'
     },
     body: JSON.stringify({
-      blocks
+      prettier: prettified
     })
   };
 
