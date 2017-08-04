@@ -4,7 +4,7 @@ A simple lamda function that will return prettified code blocks found on a page
 
 ## Usage
 
-POST to `https://xu2gjdfgt7.execute-api.us-east-1.amazonaws.com/dev/prettier` with the post body set to a code block to be prettified, e.g.
+POST to `https://xu2gjdfgt7.execute-api.us-east-1.amazonaws.com/dev/prettier/v1` with the post body set to a code block to be prettified, e.g.
 
 ```
 foo(reallyLongArg(), omgSoManyParameters(), IShouldRefactorThis(), isThereSeriouslyAnotherOne());
@@ -21,7 +21,7 @@ returns (stringified)
 ```javascript
 import fetch from 'isomorphic-fetch';
 
-fetch(`https://xu2gjdfgt7.execute-api.us-east-1.amazonaws.com/dev/prettier`, {
+fetch(`https://xu2gjdfgt7.execute-api.us-east-1.amazonaws.com/dev/prettier/v1/v1`, {
   method: 'POST',
   mode: 'cors',
   body: `foo(reallyLongArg(), omgSoManyParameters(), IShouldRefactorThis(), isThereSeriouslyAnotherOne());`
@@ -39,6 +39,6 @@ fetch(`https://xu2gjdfgt7.execute-api.us-east-1.amazonaws.com/dev/prettier`, {
 
 ### Advanced
 
-Any additional query parameters are passed directly to [`prettier`][prettier], e.g. `https://xu2gjdfgt7.execute-api.us-east-1.amazonaws.com/dev/prettier?singleQuote=true&noSemi=true` will use single quotes and no semi-colons.
+Any additional query parameters are passed directly to [`prettier`][prettier], e.g. `https://xu2gjdfgt7.execute-api.us-east-1.amazonaws.com/dev/prettier/v1?singleQuote=true&noSemi=true` will use single quotes and no semi-colons.
 
 [prettier]: https://github.com/prettier/prettier

@@ -9,6 +9,6 @@ functions:
     handler: dist/handler.prettify
     events:
       - http:
-          path: prettier
+          path: prettier/v1
           method: post
           cors: true
