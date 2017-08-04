@@ -1,0 +1,26 @@
+{
+  "name": "prettier-lamda",
+  "version": "1.0.0",
+  "author": "Dustin Schau <dustinschau@gmail.com>",
+  "license": "MIT",
+  "main": "dist/handler.js",
+  "scripts": {
+    "prebuild": "npm run clean",
+    "build": "babel src --out-dir dist",
+    "predeploy": "npm run build",
+    "deploy": "serverless deploy",
+    "clean": "del-cli \"dist/**/*\"",
+    "format": "prettier \"src/**/*.js\" --single-quote --write"
+  },
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.2",
+    "isomorphic-fetch": "^2.2.1",
+    "prettier": "^1.5.3"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-plugin-transform-object-rest-spread": "^6.23.0",
+    "babel-preset-env": "^1.6.0",
+    "del-cli": "^1.1.0"
+  }
+}
